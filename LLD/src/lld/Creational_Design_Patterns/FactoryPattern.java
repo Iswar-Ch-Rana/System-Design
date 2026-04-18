@@ -1,19 +1,22 @@
 package lld.Creational_Design_Patterns;
 
 /// ## Factory Pattern
-/// The Factory Pattern is a creational design pattern that provides an interface for creating objects in a superclass, 
+/// The Factory Pattern provides an interface for creating objects in a superclass, 
 /// but allows subclasses to alter the type of objects that will be created.
 ///
-/// ### Core Components
-/// - **Product Interface:** Defines the interface of objects the factory method creates.
-/// - **Concrete Products:** Implementations of the product interface.
-/// - **Factory Class:** Contains the logic to instantiate the appropriate concrete product based on input.
+/// **Examples:** Document readers (PDF vs Word), UI Elements (Button for Mac vs Windows).
 
+/// ### Core Components
+///
+/// #### 1. Product Interface (`Logistics`)
+/// Defines the common operations for all concrete products.
 interface Logistics {
+    /// Sends the shipment using the specific transport logic.
     void send();
 }
 
-/// Concrete Product: Road Logistics implementation.
+/// #### 2. Concrete Products (`Road`, `Air`)
+/// Specific implementations of the `Logistics` interface.
 class Road implements Logistics {
     @Override
     public void send() {
@@ -21,7 +24,6 @@ class Road implements Logistics {
     }
 }
 
-/// Concrete Product: Air Logistics implementation.
 class Air implements Logistics {
     @Override
     public void send() {
@@ -29,15 +31,23 @@ class Air implements Logistics {
     }
 }
 
-/// Factory Class responsible for object creation.
+/// #### 3. Factory Class (`LogisticsFactory`)
 ///
-/// Decouples the client code from the concrete classes being instantiated.
+/// ##### Understanding
+/// - Centralizes object creation logic.
+/// - Client doesn't need to know which concrete class is being instantiated.
+///
+/// ##### Pros
+/// - **Loose Coupling:** Client code is independent of concrete implementation.
+/// - **Single Responsibility:** Creation logic is moved to one place.
+///
+/// ##### Cons
+/// - **Complexity:** Can lead to many small classes.
 class LogisticsFactory {
     /// Creates a Logistics instance based on the provided mode.
     ///
     /// @param mode The mode of transport (e.g., "Air", "Road").
     /// @return A concrete implementation of the `Logistics` interface.
-    /// @throws IllegalArgumentException if the mode is not recognized.
     public static Logistics getLogistics(String mode) {
         if (mode.equalsIgnoreCase("Air")) {
             return new Air();
@@ -51,26 +61,26 @@ class LogisticsFactory {
 /// Service class that uses the Factory to perform operations.
 class LogisticsService {
     /// Initiates a shipment by requesting the appropriate object from the Factory.
-    ///
-    /// @param mode The transport mode requested by the client.
     public void send(String mode) {
-        // Using the Logistics Factory to get the desired object based on the mode
         Logistics logistics = LogisticsFactory.getLogistics(mode);
         logistics.send();
     }
 }
 
-/// ### Factory Pattern Execution
-/// Demonstrates how the `LogisticsService` can interact with different logistics types
-/// without knowing the concrete implementation details.
+/// ## Summary of Factory Pattern
+///
+/// ### Pros
+/// - **Scalability:** Easy to add new product types without changing client code.
+/// - **Clean Code:** Avoids complex `if-else` or `switch` blocks in business logic.
+///
+/// ### Cons
+/// - **Boilerplate:** Requires creating an interface and multiple subclasses.
 public class FactoryPattern {
     public static void main(String[] args) {
         try {
             LogisticsService service = new LogisticsService();
             service.send("Air");
             service.send("Road");
-            
-            // This will trigger the exception handling
             service.send("mall");
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());

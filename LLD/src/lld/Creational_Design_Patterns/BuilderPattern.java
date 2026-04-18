@@ -6,16 +6,27 @@ import java.util.List;
 /// ## Builder Pattern
 /// Creational pattern for constructing complex objects step by step.
 ///
-/// ### Why use?
-/// - **Immutability:** Resulting object is immutable (final fields).
-/// - **Readable:** Avoids "telescoping constructors" with many parameters.
-/// - **Flexible:** Allows optional parameters without complex constructor overloading.
+/// **Examples:** Building a PC (CPU, RAM, GPU), Fast-food order customization.
+///
+/// ### Understanding
+/// - **Step-by-step Construction:** Objects are built incrementally.
+/// - **Encapsulation:** Object construction is separated from its representation.
+/// - **Immutability:** Resulting object can be final and thread-safe.
+///
+/// ### Pros
+/// - **Avoids Telescoping Constructor:** Readable code even with many fields.
+/// - **Optional Parameters:** No need for complex overloading.
+/// - **Immutable Objects:** Can be created safely with private constructors.
+///
+/// ### Cons
+/// - **Verbosity:** Requires many small methods for each property.
+/// - **Duplicate Code:** Builder often mimics the original class's fields.
 
+// Represents a customizable Burger Meal.
 class BurgerMeal {
     private final String bunType;
     private final String patty;
 
-    // Optional components
     private final boolean hasCheese;
     private final List<String> toppings;
     private final String side;
@@ -33,52 +44,35 @@ class BurgerMeal {
 
     /// Static nested Builder class.
     public static class BurgerBuilder {
-        // Required
         private final String bunType;
         private final String patty;
 
-        // Optional
         private boolean hasCheese;
         private List<String> toppings;
         private String side;
         private String drink;
 
         /// Builder constructor with required fields.
-        ///
-        /// @param bunType Required bun type.
-        /// @param patty   Required patty type.
         public BurgerBuilder(String bunType, String patty) {
             this.bunType = bunType;
             this.patty = patty;
         }
 
-        /// Sets cheese preference.
-        ///
-        /// @return Current builder instance.
         public BurgerBuilder withCheese(boolean hasCheese) {
             this.hasCheese = hasCheese;
             return this;
         }
 
-        /// Sets toppings list.
-        ///
-        /// @return Current builder instance.
         public BurgerBuilder withToppings(List<String> toppings) {
             this.toppings = toppings;
             return this;
         }
 
-        /// Sets side dish.
-        ///
-        /// @return Current builder instance.
         public BurgerBuilder withSide(String side) {
             this.side = side;
             return this;
         }
 
-        /// Sets drink.
-        ///
-        /// @return Current builder instance.
         public BurgerBuilder withDrink(String drink) {
             this.drink = drink;
             return this;
@@ -93,20 +87,21 @@ class BurgerMeal {
     }
 }
 
-/// ### Builder Pattern Execution
-/// Demonstrates fluent API for object creation.
+/// ## Summary of Builder Pattern
+///
+/// ### Pros
+/// - **Fluent API:** Clean method chaining for configuration.
+/// - **Valid Construction:** Ensures mandatory fields are set at once.
+///
+/// ### Cons
+/// - **Complexity:** Excessive boilerplate for simple objects.
 public class BuilderPattern {
     public static void main(String[] args) {
-        // Creating burger with only required fields
+        // Plain
         BurgerMeal plainBurger = new BurgerMeal.BurgerBuilder("wheat", "veg")
                 .build();
 
-        // Burger with cheese only
-        BurgerMeal burgerWithCheese = new BurgerMeal.BurgerBuilder("wheat", "veg")
-                .withCheese(true)
-                .build();
-
-        // Fully loaded burger
+        // Loaded
         List<String> toppings = Arrays.asList("lettuce", "onion", "jalapeno");
         BurgerMeal loadedBurger = new BurgerMeal.BurgerBuilder("multigrain", "chicken")
                 .withCheese(true)
