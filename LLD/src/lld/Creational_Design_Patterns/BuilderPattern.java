@@ -53,6 +53,7 @@ class BurgerMeal {
         }
 
         /// Sets cheese preference.
+        ///
         /// @return Current builder instance.
         public BurgerBuilder withCheese(boolean hasCheese) {
             this.hasCheese = hasCheese;
@@ -60,6 +61,7 @@ class BurgerMeal {
         }
 
         /// Sets toppings list.
+        ///
         /// @return Current builder instance.
         public BurgerBuilder withToppings(List<String> toppings) {
             this.toppings = toppings;
@@ -67,6 +69,7 @@ class BurgerMeal {
         }
 
         /// Sets side dish.
+        ///
         /// @return Current builder instance.
         public BurgerBuilder withSide(String side) {
             this.side = side;
@@ -74,6 +77,7 @@ class BurgerMeal {
         }
 
         /// Sets drink.
+        ///
         /// @return Current builder instance.
         public BurgerBuilder withDrink(String drink) {
             this.drink = drink;
@@ -81,6 +85,7 @@ class BurgerMeal {
         }
 
         /// Final build method.
+        ///
         /// @return New `BurgerMeal` instance.
         public BurgerMeal build() {
             return new BurgerMeal(this);
