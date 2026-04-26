@@ -5,13 +5,13 @@ package lld.Behavioral_Design_Patterns;
 /// but lets subclasses override specific steps of the algorithm without changing its structure.
 ///
 /// **Examples:** Build tools (compile -> test -> package), Data miners, UI framework life-cycles.
-
+///
 /// ### The Problem: Code Duplication
 /// Multiple classes perform similar tasks with a few differing steps. 
 /// Repeating common logic (logging, validation, rate-limiting) leads to maintenance nightmares 
 /// and inconsistent behavior across implementations.
 
-/// Legacy Email: Duplicate validation and logging.
+// Legacy Email: Duplicate validation and logging.
 class LegacyEmailSender {
     public void send(String to, String msg) {
         System.out.println("Validating: " + to);
@@ -31,24 +31,24 @@ class LegacySMSSender {
 
 /// ### The Solution: Template Pattern
 /// Push common steps to a base class and define "hooks" or abstract methods for variant steps.
-
+///
 /// #### Understanding
 /// - **Abstract Class (`NotificationSender`):** Defines the `templateMethod()` that fixes the algorithm's structure.
 /// - **Template Method (`send()`):** A `final` method that calls steps in a specific order.
 /// - **Abstract Steps (`composeMessage`, `sendMessage`):** Steps that MUST be implemented by subclasses.
 /// - **Hooks (`postSendAnalytics`):** Optional steps with default implementations.
-
+///
 /// #### Pros
 /// - **Code Reuse:** Centralize common code in the superclass.
 /// - **Controlled Extension:** Subclasses can only override specific points in the algorithm.
-
+///
 /// #### Cons
 /// - **Rigidity:** Some clients might find the fixed skeleton too restrictive.
 /// - **Liskov Substitution:** Violates principle if subclasses try to change behavior of base steps.
 
 // ========== Abstract Template ==========
 
-/// Base class defining the notification algorithm.
+// Base class defining the notification algorithm.
 abstract class NotificationSender {
 
     /// The Template Method. Fixed algorithm structure.
