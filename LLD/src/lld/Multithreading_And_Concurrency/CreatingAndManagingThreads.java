@@ -129,7 +129,7 @@ class SMSTask implements Runnable {
 /**
  * Email task implementing Runnable (no return value).
  */
-class EmailTask implements Runnable {
+class EmailTask1 implements Runnable {
     @Override
     public void run() {
         try {
@@ -248,7 +248,7 @@ public class CreatingAndManagingThreads {
         FutureTask<String> etaTask = new FutureTask<>(new ETACalculationTask());
         Thread etaThread = new Thread(etaTask);
         Thread smsThread = new Thread(new SMSTask());
-        Thread emailThread = new Thread(new EmailTask());
+        Thread emailThread = new Thread(new EmailTask1());
 
         long startTime = System.currentTimeMillis();
 
@@ -274,7 +274,7 @@ public class CreatingAndManagingThreads {
 
         Future<String> etaResult = executorService.submit(new ETACalculationTask());
         executorService.submit(new SMSTask());
-        executorService.submit(new EmailTask());
+        executorService.submit(new EmailTask1());
 
         try {
             System.out.println(etaResult.get());
