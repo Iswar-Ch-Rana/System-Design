@@ -4,21 +4,21 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-/// ╔══════════════════════════════════════════════════════════════════════════════╗
-/// ║              BUILDING RESILIENT SYSTEMS – STUDY NOTES                       ║
-/// ╠══════════════════════════════════════════════════════════════════════════════╣
+/// ╔════════════════════════════════════════════════════════════════════════════╗
+/// ║              BUILDING RESILIENT SYSTEMS – STUDY NOTES                      ║
+/// ╠════════════════════════════════════════════════════════════════════════════╣
 /// ║                                                                            ║
 /// ║  Resilience = the ability of a system to handle failures gracefully        ║
 /// ║  without cascading into full outages.                                      ║
 /// ║                                                                            ║
 /// ║  Key Resilience Strategies:                                                ║
 /// ║  ┌────────────────────────────────────────────────────────────────────┐    ║
-/// ║  │ 1. Fallback        – Provide alternate response on failure        │    ║
-/// ║  │ 2. Retry           – Re-attempt a failed operation                │    ║
-/// ║  │ 3. Backoff         – Increase delay between retries               │    ║
-/// ║  │ 4. Circuit Breaker – Stop calling a failing service temporarily   │    ║
-/// ║  │ 5. Timeout         – Don't wait forever for a response            │    ║
-/// ║  │ 6. Bulkhead        – Isolate failures to prevent cascading        │    ║
+/// ║  │ 1. Fallback        – Provide alternate response on failure         │    ║
+/// ║  │ 2. Retry           – Re-attempt a failed operation                 │    ║
+/// ║  │ 3. Backoff         – Increase delay between retries                │    ║
+/// ║  │ 4. Circuit Breaker – Stop calling a failing service temporarily    │    ║
+/// ║  │ 5. Timeout         – Don't wait forever for a response             │    ║
+/// ║  │ 6. Bulkhead        – Isolate failures to prevent cascading         │    ║
 /// ║  └────────────────────────────────────────────────────────────────────┘    ║
 /// ║                                                                            ║
 /// ║  Comparison Table:                                                         ║
@@ -32,7 +32,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /// ║  │ Timeout          │ All external calls    │ False failures if short  │   ║
 /// ║  │ Bulkhead         │ Multi-tenant systems  │ Wasted resources         │   ║
 /// ║  └──────────────────┴───────────────────────┴──────────────────────────┘   ║
-/// ╚══════════════════════════════════════════════════════════════════════════════╝
+/// ╚════════════════════════════════════════════════════════════════════════════╝
 
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -420,7 +420,7 @@ public class BuildingResilientSystems {
     public static void main(String[] args) {
 
         System.out.println("╔══════════════════════════════════════════════════╗");
-        System.out.println("║   BUILDING RESILIENT SYSTEMS – DEMO             ║");
+        System.out.println("║   BUILDING RESILIENT SYSTEMS – DEMO              ║");
         System.out.println("╚══════════════════════════════════════════════════╝\n");
 
         // ─── 1. Fallback Demo ─────────────────────────────────────────────
